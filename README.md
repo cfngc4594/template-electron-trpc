@@ -2,6 +2,22 @@
 
 A desktop application development template based on Electron + tRPC + React.
 
+## Branches
+
+### Main Branch
+
+This branch provides the basic Electron + tRPC + React setup.
+
+### Hono + Prisma + Better Auth Integration
+
+If you want to use Electron with Hono + Prisma + Better Auth integration, you can switch to the `feat/hono-prisma-better-auth` branch:
+
+```sh
+git checkout feat/hono-prisma-better-auth
+```
+
+Then check the `hono/README.md` file for setup and usage instructions.
+
 ## Usage
 
 ### Adding Routers
