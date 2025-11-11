@@ -2,6 +2,8 @@ import path from 'node:path'
 // import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import { app, BrowserWindow } from 'electron'
+import { createIPCHandler } from 'electron-trpc-experimental/main'
+import { appRouter } from './trpc/routers/_app'
 
 // const require = createRequire(import.meta.url)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -33,6 +35,8 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.mjs'),
     },
   })
+
+  createIPCHandler({ router: appRouter, windows: [win] })
 
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL)
