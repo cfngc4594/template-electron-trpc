@@ -77,3 +77,46 @@ function App() {
   )
 }
 ```
+
+### OAuth
+
+#### Production Configuration
+
+To enable OAuth authentication in your Electron app for production, you need to modify the protocol to a custom protocol value.
+
+You need to modify the `PROTOCOL` constant in the following two files:
+
+1. **`src/constants/protocol.ts`** (Electron main app)
+2. **`hono/src/constants/protocol.ts`** (Hono backend service)
+
+Change the protocol value from the default `'myapp'` to your own custom protocol in both files, for example:
+
+```typescript
+export const PROTOCOL = 'your-custom-protocol'
+```
+
+**Important Notes:**
+- The protocol values in both files must be consistent
+- The protocol value should conform to URL scheme specifications (lowercase letters, numbers, hyphens)
+- You need to rebuild the Electron app after making changes for them to take effect
+
+#### GitHub OAuth Configuration
+
+When setting up GitHub OAuth in your GitHub application settings, you need to configure the following URLs:
+
+1. **Homepage URL**: Set this to your Hono backend service URL
+   - Development: `http://localhost:3000`
+   - Production: Your production Hono service URL (e.g., `https://your-api-domain.com`)
+
+2. **Authorization callback URL**: 
+   - Development: `http://localhost:5173` (Electron dev server)
+   - Production: `{PROTOCOL}://index.html` or other format as needed by your application
+     - Example: If your protocol is `myapp`, use `myapp://index.html`
+
+**Example:**
+If your protocol is `myapp` and your Hono service runs at `http://localhost:3000`:
+- Homepage URL: `http://localhost:3000`
+- Authorization callback URL (Development): `http://localhost:5173`
+- Authorization callback URL (Production): `myapp://index.html`
+
+Make sure to set the `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` environment variables in your `.env` file with the values from your GitHub OAuth application.
