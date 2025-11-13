@@ -86,11 +86,6 @@ else {
         win.restore()
       win.focus()
     }
-
-    // const url = commandLine.find(arg => arg.startsWith(`${PROTOCOL}://`))
-    // if (url && win) {
-    //   win.webContents.send('protocol-url-received', url)
-    // }
   })
 
   app.whenReady().then(() => {
@@ -113,20 +108,6 @@ else {
 
     createWindow()
   })
-
-  // if (process.platform === 'darwin') {
-  //   app.on('open-url', (event, url) => {
-  //     event.preventDefault()
-  //     if (win) {
-  //       win.webContents.send('protocol-url-received', url)
-  //     }
-  //   })
-  // }
-  // else {
-  //   const url = process.argv.find(arg => arg.startsWith(`${PROTOCOL}://`))
-  //   if (url && win)
-  //     win.webContents.send('protocol-url-received', url)
-  // }
 
   app.on('open-url', (event, url) => {
     event.preventDefault()
