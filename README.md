@@ -18,6 +18,10 @@ git checkout feat/hono-prisma-better-auth
 
 Then check the `hono/README.md` file for setup and usage instructions.
 
+**Important**: After switching to this branch, make sure to:
+1. Install dependencies in the `hono` directory: `cd hono && bun install`
+2. Set up the database by running Prisma migrations (see `hono/README.md` for details)
+
 ## Usage
 
 ### Adding Routers

@@ -6,6 +6,42 @@ To install dependencies:
 bun install
 ```
 
+## Database Setup
+
+After installing dependencies, you need to set up the database:
+
+1. **Generate Prisma Client**:
+
+```sh
+bunx prisma generate
+```
+
+2. **Run database migrations**:
+
+```sh
+bunx prisma migrate dev
+```
+
+This will create the database file (if using SQLite) and apply all migrations.
+
+3. **(Optional) Seed the database**:
+
+If you have seed data configured in `prisma/seed.ts`, you can run:
+
+```sh
+bunx prisma db seed
+```
+
+**Note**: To enable the seed command, you need to add the following to `package.json`:
+
+```json
+{
+  "prisma": {
+    "seed": "bun run prisma/seed.ts"
+  }
+}
+```
+
 ## Environment Variables
 
 First, copy the environment variables example file:
