@@ -1,10 +1,16 @@
+import type { IpcMainInvokeEvent } from 'electron'
+import { EventEmitter } from 'node:events'
 import { initTRPC } from '@trpc/server'
-import { cache } from 'react'
 import superjson from 'superjson'
 
-export const createTRPCContext = cache(async () => {
-  return { }
-})
+export const protocolUrlEmitter = new EventEmitter()
+
+export function createTRPCContext(opts: { event: IpcMainInvokeEvent }) {
+  return {
+    event: opts.event,
+    protocolUrlEmitter,
+  }
+}
 
 export type Context = Awaited<ReturnType<typeof createTRPCContext>>
 
