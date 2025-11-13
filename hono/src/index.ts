@@ -3,6 +3,7 @@ import { serve } from '@hono/node-server'
 import { Scalar } from '@scalar/hono-api-reference'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
+import { PROTOCOL } from './constants/protocol.js'
 import { auth } from './lib/auth.js'
 
 interface ContextWithPrisma {
@@ -16,7 +17,12 @@ const app = new Hono<ContextWithPrisma>()
 app.use(
   '/api/auth/*',
   cors({
-    origin: ['http://localhost:5173'],
+    origin: (origin) => {
+      if (origin.startsWith(`${PROTOCOL}://`) || origin === 'http://localhost:5173') {
+        return origin
+      }
+      return null
+    },
     allowHeaders: ['Content-Type', 'Authorization'],
     allowMethods: ['POST', 'GET', 'OPTIONS'],
     exposeHeaders: ['Content-Length'],
