@@ -18,7 +18,7 @@ app.use(
   '/api/auth/*',
   cors({
     origin: (origin) => {
-      if (origin.startsWith(`${PROTOCOL}://`) || origin === 'http://localhost:5173') {
+      if (origin.startsWith(`${PROTOCOL}://`) || origin.startsWith('http://localhost')) {
         return origin
       }
       return null
