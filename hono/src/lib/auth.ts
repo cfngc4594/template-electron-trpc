@@ -1,7 +1,7 @@
 import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { openAPI } from 'better-auth/plugins'
-import { PROTOCOL } from '../constants/protocol'
+import { PROTOCOL } from '../constants'
 // If your Prisma file is located elsewhere, you can change the path
 import { PrismaClient } from '../generated/prisma/client'
 

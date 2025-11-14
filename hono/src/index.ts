@@ -3,7 +3,7 @@ import { serve } from '@hono/node-server'
 import { Scalar } from '@scalar/hono-api-reference'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
-import { PROTOCOL } from './constants/protocol.js'
+import { PROTOCOL } from './constants/index.js'
 import { auth } from './lib/auth.js'
 
 interface ContextWithPrisma {
